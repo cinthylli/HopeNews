@@ -32,14 +32,23 @@ class News extends Component {
     ))
 
     render() {
+        if (this.props.loading) {
+            return <Container textAlign='center'>
+            <div class="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        </Container>
+            
+        }
         return (
             <section>
-                <Container textAlign='center'><h1>{this.props.category}</h1></Container>
-                {this.fillCards()}
+                <h1>{this.props.category}</h1>
+                <Container textAlign='center'>
+                    {this.fillCards()}
+                </Container>
             </section>
         );
     }
 }
+
 
 
 const mapStateToProps = (reducers) => {
