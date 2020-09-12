@@ -3,9 +3,9 @@ import { Container } from 'semantic-ui-react';
 import Card from '../components/Card'
 import { connect } from 'react-redux'
 import * as newsActions from '../actions/newsActions'
-
+import Spinner from '../components/general/Spinner'
+import Fatal from '../components/general/Fatal';
 class News extends Component {
-
 
     componentDidMount() {
         let date = new Date().toISOString().split('T')[0];
@@ -19,7 +19,9 @@ class News extends Component {
         this.props.traerTodas({ date: date });
     }
 
-    fillCards = () => this.props.news.map((news) => (
+
+    fillCards = () => this.props.news.splice(0,10).map((news) => (
+        
         <Card
             title={news.title}
             url={news.url}
@@ -34,10 +36,17 @@ class News extends Component {
     render() {
         if (this.props.loading) {
             return <Container textAlign='center'>
-            <div class="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-        </Container>
-            
+                <Spinner />
+            </Container>
+
         }
+        if (this.props.error) {
+            return <Container textAlign='center'>
+                <Fatal message={this.props.error} />
+            </Container>
+        }
+
+        console.log(this.props)
         return (
             <section>
                 <h1>{this.props.category}</h1>
@@ -48,8 +57,6 @@ class News extends Component {
         );
     }
 }
-
-
 
 const mapStateToProps = (reducers) => {
     return reducers.newsReducer;

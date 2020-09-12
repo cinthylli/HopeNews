@@ -88,6 +88,7 @@ export default class MenuExampleLabeledIcons extends Component {
                                     className='prompt'
                                     type='text'
                                     placeholder='Search keyword ...'
+                                    
                                 />
                             </div>
                             <div className='results' />

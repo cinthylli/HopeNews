@@ -1,15 +1,15 @@
 import {
     TRAER_BUSQUEDA,
     TRAER_TODAS,
-    TRAER_TODAS_CATEGORIA,
+    MOSTRAR_DIEZ,
     CARGANDO, ERROR
 } from '../types/newsTypes';
 
 const INITIAL_STATE = {
     title: "Titulares",
-    date: "",
-    page: 1,
+    page: 0,
     news: [],
+    newsPresented: [],
     loading: false,
     error: ''
 }
@@ -24,6 +24,7 @@ export default (state = INITIAL_STATE, action) => {
         case ERROR:
             return {
                 ...state,
+                title: action.payload,
                 error: action.payload,
                 loading: false
             }
@@ -37,13 +38,17 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 news: action.payload,
+                title: "Resultado Busqueda",
                 loading: false
             }
-        // case TRAER_TODAS_CATEGORIA:
-        //     return {
-        //         ...state,
-        //         news: action.payload
-        //     }
+        case MOSTRAR_DIEZ:
+            return {
+                ...state,
+                newsPresented: [...this.props.newsPresented, ...this.props.news.slide(10)],
+                page: this.props.page + 1,
+                loading: false
+            }
+
         default:
             return state;
     }

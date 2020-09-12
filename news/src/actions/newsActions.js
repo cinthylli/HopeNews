@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { TRAER_TODAS, TRAER_TODAS_CATEGORIA, TRAER_BUSQUEDA, CARGANDO, ERROR } from '../types/newsTypes'
+import { TRAER_TODAS, TRAER_TODAS_CATEGORIA, TRAER_BUSQUEDA, CARGANDO, ERROR, MOSTRAR_DIEZ } from '../types/newsTypes'
 export const traerTodas = ({ date }) => async (dispatch) => {
 
     dispatch({
@@ -9,11 +9,15 @@ export const traerTodas = ({ date }) => async (dispatch) => {
     try {
         const url = `https://api.canillitapp.com/latest/${date}`;
         const response = await axios.get(`${url}`);
+        const response10 = await response[10];
         dispatch({
             type: TRAER_TODAS,
             payload: response.data
         })
-        console.log("news: ", response);
+        console.log("newsTraerTodas: ", response);
+        console.log("newsTraerTodas: ", response.data);
+  
+
 
     } catch (error) {
         console.error("error:", error.message);
