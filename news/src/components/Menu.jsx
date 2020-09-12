@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Icon, Menu, } from 'semantic-ui-react'
+import { Icon, Menu, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 
@@ -12,7 +12,7 @@ export default class MenuExampleLabeledIcons extends Component {
         const { activeItem } = this.state
 
         return (
-            <Menu icon='labeled'>
+            <Menu icon='labeled'  >
 
                 <Menu.Item
                     as={Link}
@@ -21,9 +21,9 @@ export default class MenuExampleLabeledIcons extends Component {
                     active={activeItem === 'home'}
                     onClick={this.handleItemClick}
                 >
-                    <Icon name='home' />
+                    <Icon name='home' color='teal' />
           Home
-        </Menu.Item>
+        </Menu.Item >
 
                 <Menu.Item
                     as={Link}
@@ -32,7 +32,7 @@ export default class MenuExampleLabeledIcons extends Component {
                     active={activeItem === 'briefcase'}
                     onClick={this.handleItemClick}
                 >
-                    <Icon name='briefcase' />
+                    <Icon name='briefcase' color='teal' />
           Business
         </Menu.Item>
 
@@ -43,7 +43,7 @@ export default class MenuExampleLabeledIcons extends Component {
                     active={activeItem === 'world'}
                     onClick={this.handleItemClick}
                 >
-                    <Icon name='world' />
+                    <Icon name='world' color='teal' />
           International
         </Menu.Item>
 
@@ -54,7 +54,7 @@ export default class MenuExampleLabeledIcons extends Component {
                     active={activeItem === 'futbol'}
                     onClick={this.handleItemClick}
                 >
-                    <Icon name='futbol' />
+                    <Icon name='futbol' color='teal' />
           Sport
         </Menu.Item>
 
@@ -65,7 +65,7 @@ export default class MenuExampleLabeledIcons extends Component {
                     active={activeItem === 'picture'}
                     onClick={this.handleItemClick}
                 >
-                    <Icon name='picture' />
+                    <Icon name='picture' color='teal' />
           Design
         </Menu.Item>
 
@@ -76,23 +76,25 @@ export default class MenuExampleLabeledIcons extends Component {
                     active={activeItem === 'computer'}
                     onClick={this.handleItemClick}
                 >
-                    <Icon name='computer' />
+                    <Icon name='computer' color='teal' />
           Technology
         </Menu.Item>
+                <Menu.Item position='right'>
 
-                <Menu.Menu position='right'>
-                    <div className='ui right aligned category search item'>
-                        <div className='ui transparent icon input'>
-                            <input
-                                className='prompt'
-                                type='text'
-                                placeholder='Search ...'
-                            />
-                            <i className='search link icon' />
+                    <Menu.Menu position='right' >
+                        <div className='ui right aligned category search item'>
+                            <div className='ui transparent icon input'>
+                                <input
+                                    className='prompt'
+                                    type='text'
+                                    placeholder='Search keyword ...'
+                                />
+                            </div>
+                            <div className='results' />
                         </div>
-                        <div className='results' />
-                    </div>
-                </Menu.Menu>
+                        <Button primary>Search</Button>
+                    </Menu.Menu>
+                </Menu.Item>
             </Menu>
         )
     }

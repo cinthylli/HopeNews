@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Menu from './Menu'
 import Home from '../containers/Home'
-import Section from '../containers/Section';
+import News from '../containers/News';
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 function App() {
   return (
