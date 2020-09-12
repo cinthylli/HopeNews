@@ -1,21 +1,12 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import * as newsActions from '../actions/newsActions'
+import React from 'react'
 
-class Search extends Component {
-
+export default function Search(props) {
     
-    render() {
-        return (
-            <div>
+    console.log("search  ",this.props.search);
+    // console.log("data  ",this.props.news);
 
-            </div>
-        );
-    }
+
+    return (
+        this.props.search
+    )
 }
-
-const mapsStateToProps = (reducers) => {
-    return reducers.newsReducer;
-}
-
-export default connect(mapsStateToProps, newsActions)(Search);

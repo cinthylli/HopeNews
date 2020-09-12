@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
-import Menu from './Menu'
-import Home from '../containers/Home'
+import Menu from './Menu.jsx'
 import News from '../containers/News';
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 function App() {
@@ -9,12 +8,12 @@ function App() {
     <BrowserRouter>
         <Menu/>
         <Switch>
-          <Route exact path='/' component={Home} />
-          <Route exact path='/sports' component={Home} />
-          <Route exact path='/business' component={Home} />
-          <Route exact path='/technology' component={Home} />
-          <Route exact path='/design' component={Home} />
-          <Route exact path='/international' component={Home} />
+          <Route exact path='/' component={News} />
+          <Route exact path='/sports' component={News} />
+          <Route exact path='/business' component={News} />
+          <Route exact path='/technology' component={News} />
+          <Route exact path='/design' component={News} />
+          <Route exact path='/international' component={News} />
         </Switch>
     </BrowserRouter>
 

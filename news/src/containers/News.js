@@ -20,8 +20,8 @@ class News extends Component {
     }
 
 
-    fillCards = () => this.props.news.splice(0,10).map((news) => (
-        
+    fillCards = () => this.props.news.splice(0, 10).map((news) => (
+
         <Card
             title={news.title}
             url={news.url}
@@ -49,8 +49,8 @@ class News extends Component {
         console.log(this.props)
         return (
             <section>
-                <h1>{this.props.category}</h1>
                 <Container textAlign='center'>
+                    <h1>{this.props.title}</h1>
                     {this.fillCards()}
                 </Container>
             </section>

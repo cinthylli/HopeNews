@@ -11,7 +11,8 @@ const INITIAL_STATE = {
     news: [],
     newsPresented: [],
     loading: false,
-    error: ''
+    error: '', 
+    search:''
 }
 
 export default (state = INITIAL_STATE, action) => {
