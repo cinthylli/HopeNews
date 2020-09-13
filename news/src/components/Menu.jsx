@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Icon, Menu, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
-
-
-export default class MenuExampleLabeledIcons extends Component {
+import { connect } from 'react-redux'
+import * as newsActions from '../actions/newsActions'
+class MenuApp extends Component {
     state = { activeItem: 'gamepad' }
 
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
@@ -27,13 +27,13 @@ export default class MenuExampleLabeledIcons extends Component {
 
                 <Menu.Item
                     as={Link}
-                    to='/business'
+                    to='/politics'
                     name='briefcase'
                     active={activeItem === 'briefcase'}
                     onClick={this.handleItemClick}
                 >
                     <Icon name='briefcase' color='teal' />
-          Business
+          Politics
         </Menu.Item>
 
                 <Menu.Item
@@ -88,15 +88,35 @@ export default class MenuExampleLabeledIcons extends Component {
                                     className='prompt'
                                     type='text'
                                     placeholder='Search keyword ...'
-                                    
+                                    onChange={(e) => {
+                                        console.log(e.target.value)
+                                        this.props.guardarBusqueda({ search : e.target.value })
+                                    }}
+                                    onKeyPress={(e) => {
+                                        if (e.key === 'Enter') {
+                                            this.props.traerBusqueda( { search : e.target.value })
+                                        }
+                                    }}
+
                                 />
                             </div>
                             <div className='results' />
                         </div>
-                        <Button primary>Search</Button>
+                        <Button primary onClick={
+                            () => {
+                                this.props.traerBusqueda({ search : this.props.search })
+                            }
+                        }>Search</Button>
                     </Menu.Menu>
                 </Menu.Item>
             </Menu>
         )
     }
 }
+
+const mapStateToProps = (reducers) => {
+    return reducers.newsReducer;
+}
+
+
+export default connect(mapStateToProps, newsActions)(MenuApp);

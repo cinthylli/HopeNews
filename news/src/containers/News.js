@@ -1,26 +1,49 @@
 import React, { Component } from 'react';
-import { Container } from 'semantic-ui-react';
+import { Container, Button } from 'semantic-ui-react';
 import Card from '../components/Card'
 import { connect } from 'react-redux'
 import * as newsActions from '../actions/newsActions'
 import Spinner from '../components/general/Spinner'
 import Fatal from '../components/general/Fatal';
+import '../css/news.css'
 class News extends Component {
 
-    componentDidMount() {
-        let date = new Date().toISOString().split('T')[0];
-        console.log(date);
-        date = new Date().toUTCString()
-        date = new Date(date).toISOString()
-        console.log(date);
-        date = new Date().toLocaleTimeString();
-        console.log(date);
-        date = '2020-02-02'
-        this.props.traerTodas({ date: date });
+    callingCategories = () => {
+        if (this.props.location.pathname === '/sports') {
+            this.props.traerTodasCategoria({ category: 5 });
+        }
+        if (this.props.location.pathname === '/politics') {
+            this.props.traerTodasCategoria({ category: 1 });
+        }
+        if (this.props.location.pathname === '/technology') {
+            this.props.traerTodasCategoria({ category: 3 });
+        }
+        if (this.props.location.pathname === '/design') {
+            this.props.traerTodasCategoria({ category: 6 });
+        }
+        if (this.props.location.pathname === '/international') {
+            this.props.traerTodasCategoria({ category: 2 });
+        }
+        if (this.props.location.pathname === '/') {
+            let date = '2020-02-02'
+            this.props.traerTodas({ date: date });
+        }
     }
 
 
-    fillCards = () => this.props.news.splice(0, 10).map((news) => (
+    componentDidMount() {
+        this.callingCategories();
+    }
+
+
+    componentDidUpdate(prevProps, prevState) {
+        if (!(prevProps.location.pathname === this.props.location.pathname)) {
+
+            this.callingCategories();
+        }
+    }
+
+    fillCards = () => this.props.news.map((news) => (
 
         <Card
             title={news.title}
@@ -45,15 +68,27 @@ class News extends Component {
                 <Fatal message={this.props.error} />
             </Container>
         }
-
-        console.log(this.props)
         return (
-            <section>
-                <Container textAlign='center'>
-                    <h1>{this.props.title}</h1>
-                    {this.fillCards()}
-                </Container>
-            </section>
+            <>
+                <main>
+                    <Container textAlign='center' >
+                        <h1>{this.props.title}</h1>
+                        <section className="section">
+                            {this.fillCards()}
+
+                        </section>
+                        <div>
+                            <Button content='Before' icon='left arrow' labelPosition='left' onClick={() => {
+                                this.props.traerDiezAnteriores();
+                            }} />
+                            <Button content='Next' icon='right arrow' labelPosition='right'  onClick={() => {
+                                this.props.traerDiezSiguientes();
+                            }}  />
+                        </div>
+                    </Container>
+                </main>
+
+            </>
         );
     }
 }
