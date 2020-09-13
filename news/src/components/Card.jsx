@@ -10,7 +10,7 @@ const CardExampleCardProps = ({ title, img_url, url, source_name, category }) =>
                 <span className='date'>{category}</span>
             </Card.Meta>
             <Card.Description>
-                <a href={url}>
+                <a href={url} target="_blank" rel="noopener noreferrer">
                     {source_name}
                 </a>
             </Card.Description>
