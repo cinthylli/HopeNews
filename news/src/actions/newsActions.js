@@ -18,6 +18,9 @@ export const traerTodas = ({ date }) => async (dispatch) => {
     try {
         const url = `https://api.canillitapp.com/latest/${date}`;
         const response = await axios.get(`${url}`);
+        // response = response.slide(10);
+        response.data.length= 10;
+        console.log("response", response.data)
         dispatch({
             type: TRAER_TODAS,
             payload: response.data
@@ -49,10 +52,10 @@ export const traerDiezSiguientes = () => (dispatch) => {
     dispatch({
         type: CARGANDO
     })
-
     dispatch({
-        type: CARGANDO
+        type: MOSTRAR_DIEZ
     })
+
 }
 
 export const guardarBusqueda = ({ search }) => (dispatch) => {
@@ -72,6 +75,7 @@ export const traerTodasCategoria = ({ category }) => async (dispatch) => {
     console.log(url);
     try {
         const response = await axios.get(url);
+        response.data.length= 10;
         dispatch({
             type: TRAER_TODAS,
             payload: response.data
@@ -79,6 +83,7 @@ export const traerTodasCategoria = ({ category }) => async (dispatch) => {
     } catch (error) {
         console.error("error:", error.message);
     }
+
     dispatch({
         type: MOSTRAR_DIEZ
     })
