@@ -4,9 +4,8 @@ import { Container } from 'semantic-ui-react';
 export default function Fatal({ message }) {
     return (
         <Container textAlign='center'>
+            <img src="https://cdn.pixabay.com/photo/2016/04/24/13/24/error-1349562_960_720.png" alt="Error 404" />
             {message}
-            <img src="../../img/e404.jpg" alt="Error 404" />
-            <cite><a href='https://www.freepik.es/vectores/fondo'>Vector de Fondo creado por freepik - www.freepik.es</a></cite>
         </Container>
     )
 }

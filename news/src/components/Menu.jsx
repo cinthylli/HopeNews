@@ -102,7 +102,7 @@ class MenuApp extends Component {
                             </div>
                             <div className='results' />
                         </div>
-                        <Button primary onClick={
+                        <Button  color='teal'  onClick={
                             () => {
                                 this.props.traerBusqueda({ search : this.props.search })
                             }

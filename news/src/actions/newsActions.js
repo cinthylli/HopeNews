@@ -69,7 +69,7 @@ export const traerTodasCategoria = ({ category }) => async (dispatch) => {
     dispatch({
         type: CARGANDO
     })
-
+    console.log(url);
     try {
         const response = await axios.get(url);
         dispatch({

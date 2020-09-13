@@ -6,6 +6,7 @@ import * as newsActions from '../actions/newsActions'
 import Spinner from '../components/general/Spinner'
 import Fatal from '../components/general/Fatal';
 import '../css/news.css'
+import moment from 'moment'
 class News extends Component {
 
     callingCategories = () => {
@@ -25,7 +26,8 @@ class News extends Component {
             this.props.traerTodasCategoria({ category: 2 });
         }
         if (this.props.location.pathname === '/') {
-            let date = '2020-02-02'
+            let date = moment().format('YYYY-MM-DD');
+            console.log("date         ", date)
             this.props.traerTodas({ date: date });
         }
     }
@@ -81,9 +83,9 @@ class News extends Component {
                             <Button content='Before' icon='left arrow' labelPosition='left' onClick={() => {
                                 this.props.traerDiezAnteriores();
                             }} />
-                            <Button content='Next' icon='right arrow' labelPosition='right'  onClick={() => {
+                            <Button content='Next' icon='right arrow' labelPosition='right' onClick={() => {
                                 this.props.traerDiezSiguientes();
-                            }}  />
+                            }} />
                         </div>
                     </Container>
                 </main>
